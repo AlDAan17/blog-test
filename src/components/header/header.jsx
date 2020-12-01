@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import UserDataWithAvatar from '../../utils/user-data-with-avatar';
 import './header.scss';
 
-const Header = ({user, logOutAndRemoveStorageWithDispatch}) => {
+const Header = ({user, logOutAndRemoveStorage}) => {
     return (
         <header>
             <Link to='/' className="title">Realworld Blog</Link>
@@ -17,7 +17,7 @@ const Header = ({user, logOutAndRemoveStorageWithDispatch}) => {
                         <Link to="/profile">
                             <UserDataWithAvatar username={user.username} imageSrc={user.image} className="user"/>
                         </Link>
-                        <Link to="/" className="log-out" onClick={logOutAndRemoveStorageWithDispatch}>
+                        <Link to="/" className="log-out" onClick={logOutAndRemoveStorage}>
                             Log Out
                         </Link>
                     </>
@@ -43,7 +43,7 @@ Header.propTypes = {
         image: PropTypes.string,
         token: PropTypes.string,
     }).isRequired,
-    logOutingWithDispatch: PropTypes.func,
+    logOutAndRemoveStorage: PropTypes.func.isRequired,
 };
 
 export default Header;

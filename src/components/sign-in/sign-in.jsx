@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './sign-in.scss';
 import "antd/dist/antd.css";
-import { Form, Input, Checkbox, Button, Alert, message } from 'antd';
+import { Form, Input, Button, Alert, message } from 'antd';
 import {Link, Redirect} from "react-router-dom";
 
 const formItemLayout = {
@@ -94,7 +94,17 @@ SignIn.propTypes = {
     asyncAuthentication: PropTypes.func.isRequired,
     serverValidations: PropTypes.string.isRequired,
     error: PropTypes.bool.isRequired,
-    user:PropTypes.object.isRequired,
+
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        email: PropTypes.string,
+        createdAt: PropTypes.string,
+        updatedAt: PropTypes.string,
+        username: PropTypes.string,
+        bio: PropTypes.string,
+        image: PropTypes.string,
+        token: PropTypes.string,
+    }).isRequired,
 }
 
 export default SignIn;

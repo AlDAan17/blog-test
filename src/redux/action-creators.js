@@ -42,7 +42,7 @@ const articlesNotReceived = () => ({
 })
 
 export const asyncGetArticles = (token, page) => {
-  return async function(dispatch) {
+  return async function inside(dispatch) {
     try {
       dispatch(reset());
       const response = await getArticlesFromAPI(token, page);
@@ -90,7 +90,7 @@ const serverValidationsReceived = (text) => ({
 })
 
 export const asyncRegistration = (username, email, password) => {
-  return async function (dispatch) {
+  return async function inside(dispatch) {
     try {
       dispatch(reset());
       const response = await registration(username, email, password);
@@ -111,7 +111,7 @@ export const asyncRegistration = (username, email, password) => {
 }
 
 export const asyncAuthentication = (email, password) => {
-  return async function (dispatch) {
+  return async function inside(dispatch) {
     try {
       dispatch(reset());
       const response = await authentication(email, password);
@@ -134,7 +134,7 @@ const logOut = () => ({
 })
 
 export const logOutAndRemoveStorage = () => {
-  return function (dispatch) {
+  return async function inside(dispatch) {
     sessionStorage.removeItem("user");
     dispatch(logOut());
   }

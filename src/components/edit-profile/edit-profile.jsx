@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "antd/dist/antd.css";
 import { Form, Input, Button, Alert, message } from 'antd';
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 const formItemLayout = {
     labelCol: {
@@ -19,11 +20,11 @@ const tailFormItemLayout = {
     }
 };
 
-const EditProfile = ({ asyncEditProfileWithDispatch, serverValidations, user, successEditing, error }) => {
+const EditProfile = ({ asyncEditProfile, serverValidations, user, successEditing, error }) => {
     const [form] = Form.useForm();
 
      async function onFinish (client){
-        await asyncEditProfileWithDispatch(user.token, client.username, client.email, client.password, client.avatar);
+        await asyncEditProfile(user.token, client.username, client.email, client.password, client.avatar);
         if(error) message.error('Cannot connect to server, try later');
     };
 
@@ -123,6 +124,23 @@ const EditProfile = ({ asyncEditProfileWithDispatch, serverValidations, user, su
             </Form.Item>
         </Form>
     );
+};
+
+EditProfile.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    username: PropTypes.string,
+    bio: PropTypes.string,
+    image: PropTypes.string,
+    token: PropTypes.string,
+  }).isRequired,
+  asyncEditProfile: PropTypes.func.isRequired,
+  serverValidations: PropTypes.string.isRequired,
+  successEditing: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default EditProfile;

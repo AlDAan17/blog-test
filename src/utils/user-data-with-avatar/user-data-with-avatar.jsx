@@ -25,6 +25,7 @@ UserDataWithAvatar.propTypes = {
   username: PropTypes.string.isRequired,
   date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
+  imageSrc: PropTypes.string.isRequired,
 };
 
 export default UserDataWithAvatar;

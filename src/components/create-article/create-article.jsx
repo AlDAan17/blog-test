@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import 'antd/dist/antd.css';
 import './create-article.scss';
 import { Form, Input, Button, message } from 'antd';
-import { Link, Redirect } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const formItemLayout = {
@@ -40,10 +40,11 @@ const CreateArticle = ({ article, user, successCreating, error, asyncCreateArtic
     // if(error){
     //   message.error('Failed');
     // }
-    mission === 'edit' ?
-      asyncEditArticle(user.token, title, shortDescription, text, tagList, slug)
-      :
-      asyncCreateArticle(user.token, title, shortDescription, text, tagList);
+    if(mission === 'edit') {
+      return asyncEditArticle(user.token, title, shortDescription, text, tagList, slug)
+    }
+      return asyncCreateArticle(user.token, title, shortDescription, text, tagList);
+    
   };
 
   if (!Object.keys(user).length) {
@@ -189,9 +190,14 @@ const CreateArticle = ({ article, user, successCreating, error, asyncCreateArtic
   );
 };
 
+CreateArticle.defaultProps = {
+  asyncEditArticle: () => {},
+  asyncCreateArticle: () => {},
+  successEditing: false,
+  mission: '',
+}
+
 CreateArticle.propTypes = {
-  asyncCreateArticle: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
   user: PropTypes.shape({
     id: PropTypes.number,
     email: PropTypes.string,
@@ -202,9 +208,21 @@ CreateArticle.propTypes = {
     image: PropTypes.string,
     token: PropTypes.string,
   }).isRequired,
+  article: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    body: PropTypes.string,
+    tagList: PropTypes.arrayOf(PropTypes.string),
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+
+  }).isRequired,
   successCreating: PropTypes.bool.isRequired,
-  errorCreating: PropTypes.bool,
+  error: PropTypes.bool.isRequired,
   asyncEditArticle:PropTypes.func,
+  asyncCreateArticle:PropTypes.func,
+  reset: PropTypes.func.isRequired,
   successEditing: PropTypes.bool,
   mission: PropTypes.string,
 };

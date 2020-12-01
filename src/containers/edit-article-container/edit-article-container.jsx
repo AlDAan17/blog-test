@@ -11,9 +11,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  asyncGetArticle: asyncGetArticle,
-  reset: reset,
-  asyncEditArticle: asyncEditArticle,
+  asyncGetArticle,
+  reset,
+  asyncEditArticle,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditArticle);

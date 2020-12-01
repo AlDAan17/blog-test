@@ -18,9 +18,10 @@ const ArticlesList = (props) => {
         errorFavoritingArticle
     } = props;
 
+
     useEffect(() => {
         asyncGetArticles(user.token, 1);
-    }, []);
+    }, [user.token, asyncGetArticles]);
 
     if(!successfullDownload){
         return <LoadingOutlined className="spinner" spin />;
@@ -51,11 +52,23 @@ const ArticlesList = (props) => {
 }
 
 ArticlesList.propTypes = {
-    articles: PropTypes.array.isRequired,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        email: PropTypes.string,
+        createdAt: PropTypes.string,
+        updatedAt: PropTypes.string,
+        username: PropTypes.string,
+        bio: PropTypes.string,
+        image: PropTypes.string,
+        token: PropTypes.string,
+    }).isRequired,
+    articles: PropTypes.arrayOf(PropTypes.object).isRequired,
     page: PropTypes.number.isRequired,
     successfullDownload: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
-    asyncGetArticlesWithDispatch: PropTypes.func.isRequired,
+    errorFavoritingArticle: PropTypes.bool.isRequired,
+    asyncGetArticles: PropTypes.func.isRequired,
+    asyncEstimateArticle: PropTypes.func.isRequired,
 };
 
 export default ArticlesList;

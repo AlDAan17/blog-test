@@ -10,8 +10,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  asyncCreateArticle: asyncCreateArticle,
-  reset: reset,
+  asyncCreateArticle,
+  reset,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateArticle);

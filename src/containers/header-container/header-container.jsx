@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    logOutAndRemoveStorageWithDispatch: () => dispatch(logOutAndRemoveStorage())
+    logOutAndRemoveStorage: () => dispatch(logOutAndRemoveStorage())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

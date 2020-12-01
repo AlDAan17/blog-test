@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    asyncEditProfileWithDispatch: asyncEditProfile
+    asyncEditProfile
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

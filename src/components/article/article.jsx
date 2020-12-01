@@ -4,8 +4,8 @@ import './article.scss';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import Markdown from 'markdown-to-jsx';
-import UserDataWithAvatar from '../../utils/user-data-with-avatar';
 import { Popconfirm } from 'antd';
+import UserDataWithAvatar from '../../utils/user-data-with-avatar';
 
 const mapTags = (tags) => {
   return tags.map((tag) => <p className="article__tag">{tag}</p>);
@@ -41,7 +41,7 @@ const Article = (props) => {
     if (errorFavoritingArticle && stateOfFavorites.liked !== favorited) {
       setStateOfFavorites((prevState) => ({liked: !prevState.liked, count: prevState.liked ? prevState.count - 1: prevState.count + 1}));
     }
-  }, [stateOfFavorites.liked, favorited])
+  }, [errorFavoritingArticle, stateOfFavorites.liked, favorited])
 
   return (
     <div className="article">
@@ -74,7 +74,7 @@ const Article = (props) => {
                   cancelText="No"
                   onConfirm={asyncDeleteArticle}
                 >
-                  <button  className="delete-article">delete</button>
+                  <button type="button" className="delete-article">delete</button>
                 </Popconfirm>
                   <Link to={`/articles/${slug}/edit`} className="edit-article">edit</Link>
               </div>
@@ -82,10 +82,15 @@ const Article = (props) => {
         </div>
       </div>
       <Markdown>{body}</Markdown>
-      {/*<p>{body}</p>*/}
+      {/* <p>{body}</p> */}
     </div>
   );
 };
+
+Article.defaultProps = {
+  showEditArticle: false,
+  asyncDeleteArticle: () => {},
+}
 
 Article.propTypes = {
   title: PropTypes.string.isRequired,
@@ -101,10 +106,13 @@ Article.propTypes = {
   createdAt: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/require-default-props
+  favorited: PropTypes.bool.isRequired,
   showEditArticle: PropTypes.bool,
-  // eslint-disable-next-line react/require-default-props
-  // asyncDeleteArticle: PropTypes.func,
+  articleFavoriteHandler: PropTypes.func.isRequired,
+  asyncDeleteArticle: PropTypes.func,
+  errorFavoritingArticle: PropTypes.bool.isRequired,
+  disableFavoritingArticle: PropTypes.bool.isRequired,
 };
+
 
 export default Article;

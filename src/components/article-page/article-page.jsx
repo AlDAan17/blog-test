@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Article from '../article';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Redirect } from 'react-router-dom';
 import { Alert } from 'antd';
-import { asyncEstimateArticle, asyncGetArticle } from '../../redux/action-creators';
+import Article from '../article';
 
 const isMyArticle = (authorName) => {
   const myUserName = JSON.parse(sessionStorage.getItem('user'))?.username;
@@ -27,7 +26,7 @@ const ArticlePage = (props) => {
 
   useEffect(() => {
     asyncGetArticle(user.token, slug);
-  }, [asyncGetArticle, slug]);
+  }, [user.token, asyncGetArticle, slug]);
 
   if (error) {
     return <Alert className="alert" message="Article does not exist" type="error" />;
@@ -58,6 +57,12 @@ const ArticlePage = (props) => {
   />;
 };
 
+// ArticlePage.defaultProps = {
+//   article: PropTypes.shape({
+//     slug: ''
+//   }),
+// }
+
 ArticlePage.propTypes = {
   article: PropTypes.shape({
     slug: PropTypes.string.isRequired,
@@ -67,7 +72,6 @@ ArticlePage.propTypes = {
     tagList: PropTypes.arrayOf(PropTypes.string),
     createdAt: PropTypes.string,
     updatedAt: PropTypes.string,
-    favorited: PropTypes.bool.isRequired,
     favoritesCount: PropTypes.number.isRequired,
     author: PropTypes.shape({
       username: PropTypes.string,
@@ -97,6 +101,8 @@ ArticlePage.propTypes = {
   successGettingArticle: PropTypes.bool.isRequired,
   asyncDeleteArticle: PropTypes.func.isRequired,
   asyncGetArticle: PropTypes.func.isRequired,
+  asyncEstimateArticle: PropTypes.func.isRequired,
+  errorFavoritingArticle: PropTypes.bool.isRequired,
 };
 
 export default ArticlePage;

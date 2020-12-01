@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import './sign-up.scss';
 import "antd/dist/antd.css";
 import { Form, Input, Checkbox, Button, Alert, message } from 'antd';
 import {Link, Redirect} from "react-router-dom";
-import SignIn from '../sign-in';
 
 const formItemLayout = {
     labelCol: {
@@ -23,7 +22,6 @@ const tailFormItemLayout = {
 };
 
 const SignUp = ({ asyncRegistration, serverValidations, user, error }) => {
-
     const [form] = Form.useForm();
 
     const onFinish = ({Username, email, password}) => {
@@ -91,9 +89,10 @@ const SignUp = ({ asyncRegistration, serverValidations, user, error }) => {
                         required: true,
                         message: "Please input your password!"
                     },
-                    ({ getFieldValue }) => ({
+                    () => ({
                         validator(rule, value) {
                             if (value.length < 6 || value.length > 16) {
+                                // eslint-disable-next-line prefer-promise-reject-errors
                                 return Promise.reject(
                                     "Your password needs to be at least 6 and shorter then 16 characters."
                                 );
@@ -123,7 +122,7 @@ const SignUp = ({ asyncRegistration, serverValidations, user, error }) => {
                             if (!value || getFieldValue("password") === value) {
                                 return Promise.resolve();
                             }
-
+                            // eslint-disable-next-line prefer-promise-reject-errors
                             return Promise.reject(
                                 "Passwords must match"
                             );
@@ -143,6 +142,7 @@ const SignUp = ({ asyncRegistration, serverValidations, user, error }) => {
                         validator: (_, value) =>
                             value
                                 ? Promise.resolve()
+                              // eslint-disable-next-line prefer-promise-reject-errors
                                 : Promise.reject("Should accept agreement")
                     }
                 ]}
@@ -166,7 +166,16 @@ SignUp.propTypes = {
     asyncRegistration: PropTypes.func.isRequired,
     serverValidations: PropTypes.string.isRequired,
     error: PropTypes.bool.isRequired,
-    user:PropTypes.object.isRequired,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        email: PropTypes.string,
+        createdAt: PropTypes.string,
+        updatedAt: PropTypes.string,
+        username: PropTypes.string,
+        bio: PropTypes.string,
+        image: PropTypes.string,
+        token: PropTypes.string,
+    }).isRequired,
 }
 
 export default SignUp;
