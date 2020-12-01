@@ -46,7 +46,14 @@ const ArticlesList = (props) => {
 
         <div>
             {elements}
-            <Pagination current={page} pageSize={10} total={500} showSizeChanger={false} size="small" className="pagination" onChange={asyncGetArticles} />
+            <Pagination current={page}
+                        pageSize={10}
+                        total={500}
+                        showSizeChanger={false}
+                        size="small"
+                        className="pagination"
+                        onChange={ (pages) => asyncGetArticles(user.token, pages)}
+            />
         </div>
     )
 }
