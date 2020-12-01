@@ -1,0 +1,18 @@
+@mixin button($padding, $border-color, $color, $color-hover, $background-hover, $border-hover){
+  outline: none;
+  padding:$padding;
+  font: inherit;
+  color: $color;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border-color;
+  border-radius: 5px;
+  transition: .4s background;
+
+  &:hover{
+    color:$color-hover;
+    background: $background-hover;
+    border:$border-hover;
+  }
+}

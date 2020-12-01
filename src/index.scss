@@ -1,0 +1,44 @@
+@font-face {
+  font-family: Inter;
+  src: url('./fonts/Inter-Regular.ttf');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("./fonts/Roboto-Medium.ttf");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Inter, serif;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li{
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #EBEEF3 !important;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 12px;
+}
+ul,
+ol{
+  list-style: none;
+}
+label{
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+}

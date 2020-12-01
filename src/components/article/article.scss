@@ -1,0 +1,82 @@
+@import "./src/utils/button-mixins";
+
+.article {
+  padding: 15px 14px 24px 19px;
+  background: #fff;
+  margin: 26px auto 0;
+  max-width: 941px;
+  border-radius: 5px;
+
+  .article__item {
+    display: flex;
+    justify-content: space-between;
+
+    .article__head {
+      font-weight: normal;
+      font-size: 20px;
+      color: #1890FF;
+      margin-right: 13px;
+    }
+
+    .article__tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 2px 4px;
+      margin: 3px 5px 7px 0;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 2px;
+    }
+
+    .article__description {
+      font-size: 12px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.75);
+      margin-bottom: 10px;
+    }
+
+    .heart {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: url("../../icons/heart-passive.png") no-repeat;
+      transform: translate(0px, 2px);
+      margin-right: 5px;
+    }
+
+    .heart__active{
+      background: url("../../icons/heart-active.png") no-repeat;
+    }
+
+    .heart__checkbox {
+      margin: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+
+      //&:checked ~ .heart {
+      //  background: url("../../icons/heart-active.png") no-repeat;
+      //}
+    }
+
+    .article__container{
+      flex-shrink: 0;
+
+      .edit-buttons{
+        display: flex;
+        justify-content: flex-end;
+        margin: 30px 0 20px 0;
+
+        .delete-article {;
+          background: transparent;
+          @include button(9px 17px, #F5222D, #F5222D, #fff, #F5222D, #fff);
+        }
+
+        .edit-article {
+          background: transparent;
+          margin-left: 10px;
+          @include button(9px 17px, #52C41A, #52C41A, #fff, #52C41A, #fff);
+        }
+      }
+    }
+  }
+}

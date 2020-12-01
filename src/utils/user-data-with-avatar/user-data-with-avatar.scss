@@ -1,0 +1,26 @@
+.person {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  .person__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .person__info__username {
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .person__info__date {
+      font-size: 12px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .person__avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin-left: 12px;
+  }
+}

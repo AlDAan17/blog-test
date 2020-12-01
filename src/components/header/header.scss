@@ -1,0 +1,45 @@
+@import "./src/utils/button-mixins";
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 0 22px 0 22px;
+  height: 80px;
+  font-size:18px;
+  .title{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.85);
+  }
+}
+
+.sign-up{
+  width: 109px;
+  height: 51px;
+  @include button(6px 18px 10px, #52C41A, #52C41A, #fff, #52C41A, #fff);
+}
+
+.sign-in{
+  width: 109px;
+  height: 51px;
+  @include button(6px 18px 10px, transparent, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65), transparent, transparent);
+  margin-right: 9px;
+}
+
+.create{
+  width: 109px;
+  height: 51px;
+  @include button(6px 10px, #52C41A, #52C41A, #fff, #52C41A, #fff);
+  font-size: 14px;
+}
+
+.log-out{
+  width: 109px;
+  height: 51px;
+  @include button(6px 18px 10px, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75), #fff, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+}
+
+.user{
+  margin: 0 30px;
+}

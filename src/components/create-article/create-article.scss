@@ -1,0 +1,47 @@
+.form__row div{
+  text-align: left;
+  margin-left: 0;
+}
+
+.form__create{
+  max-width: 930px;
+}
+
+.btn__tag{
+  padding: 9px 37px 30px;
+  border-radius: 5px;
+  transition: box-shadow .3s ease-in-out, color .3s ease-in-out;
+}
+
+.btn__tag-del{
+  &:hover {
+    box-shadow: 0 0 40px 40px #F5222D inset;
+    color:#fff !important;
+    outline: 0;
+  }
+  margin: 0 10px 5px 10px;
+}
+
+.btn__tag-add {
+  &:hover {
+    box-shadow: 0 0 40px 40px #1890FF inset;
+    color:#fff !important;
+    outline: 0;
+  }
+}
+
+.btn__save{
+  width: 320px;
+  border-radius: 5px;
+  padding: 8px 0 30px;
+}
+
+.input__tag{
+  width: 300px;
+  outline: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-left: 0 !important;
+  text-align: left !important;
+}
